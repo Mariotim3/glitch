@@ -24,19 +24,14 @@ https://www.enixiss.com/projects/glitch/beta-program/
 
 Glitch!'s birthday is officially April 1st, 2023. 
 
-# SUPPORT ME!
+# ☕ BUY ME A COFFEE!
 
-# OTHER
-
-<a href="https://github.com/Mariotim3/glitch/releases/"><img src="https://img.shields.io/github/tag/Mariotim3/glitch?include_prereleases=&sort=semver&color=blue" alt="GitHub tag"></a>
-<a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License"></a>
-
-<i>Call-to-Action buttons</i>
+![buy-me-a-coffee_50](https://user-images.githubusercontent.com/92692001/229375088-37fa064c-f710-42ae-88b5-e8d99aa62461.png)
 
 <div align="center">
 </div>
 <h2>Documentation</h2>
-<div align="center">
+<div align="left">
 <a href="https://enixiss.com/projects/glitch/docs" title="Go to project documentation"><img src="https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge" alt="view - Documentation"></a>
 
 </div>
