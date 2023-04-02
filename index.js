@@ -2,8 +2,8 @@
 
 // temporary!!
 
-let trained_inputs = ["hi","owo","hiya","you’re","you’re gay","heheheh","bark","good boy","roll over","yes","no","rawr","hi","die","hello","hru","who's a good boi?","cute","are you a good boi?","i feel sad","goodnight","guys i think i’m gay","who do you love","damn","oh","i'm bored","yum","😩","gay"];
-let trained_outputs = ["hello", "OwO","hii","no you are, punk","no you are, punk","what’s so funny?","WOOF WOOF","YAYAYAYA :DD","*rolls over*",":D","D:","grr >:)","go kys","kys","go kys","stfu","MEEEE!! MEEEE!!!! I AMMM!!!!! :D","aww I’m cute? :0","YES!! I'M A GOOD BOI!!! ME!!!","kill yourself","goodnight!! :))","*grabs flamethrower cutely*","ur mom","damn right son �","go die","go smoke weed","😉","GO TO HORNY JAIL","HOMO!!"];
+let trained_inputs = ["hi"]; // These are the inputs
+let trained_outputs = ["hello"]; // These are the outputs
 
 const { Client, GatewayIntentBits } = require("discord.js");
 
@@ -15,10 +15,10 @@ require("dotenv/config");
 // functions
 
 function callback(){
-    console.warn("CALLBACK!");
+    console.warn("CALLBACK!"); // Callback for fs
 }
 
-function respondToMessage(msg, interaction){
+/*function respondToMessage(msg, interaction){
 
 console.log("RECEIVED!!")
 
@@ -34,11 +34,16 @@ if (trained_inputs.includes(message)){
 
 else
     {
-       return interaction.reply("I don't know that yet! Why don't you train me? :D \n\n **/train**");
+       return interaction.reply("I don't know that yet! Why don't you train me? :D \n\n **///train**");
     }
 
-}
+} 
+ */
 
+// ABOVE IS NOT IN USE AS OF NOW!
+
+
+// BASIC CLIENT & INTENTS
 
 const client = new Client({
     partials: ["CHANNEL", "MESSAGE"], intents: [
@@ -63,17 +68,17 @@ client.on("messageCreate", msg => {
         return;
     } 
 
-    if (msg.content.length > 1000){
+    if (msg.content.length > 1000){ // IF THE MESSAGE HAS MORE THAN 1000 CHARACTERS -> IGNORE IT!
         return;
     }
 
     if (!msg.author.bot) { 
 
-        if (msg.channelId === "1091862243450310757" || msg.channelId === "1091981457074954290" || msg.guildId === "924890998457385021"){
+        if (msg.channelId === "INSERT YOUR CHANNEL ID HERE"){ // CHANNEL AND GUILD_IDS TO ALLOW THE BOT TO CHAT IN. 
 
     let message = (msg.content.toLowerCase());
 
-    if (trained_inputs.includes(message)){
+    if (trained_inputs.includes(message)){ // THIS IS SAYING IF THE TRAINED_INPUTS CONTAINS THE MESSAGE -> SET IT TO A VARIABLE OF indexOfOutMessage AND REPLY WITH THE CORRESPONDING INDEX OF THE TRAINED_OUTPUTS
 
         let indexOfOutMessage = trained_inputs.indexOf(message);   
 
@@ -99,12 +104,11 @@ client.on("interactionCreate", interaction => {
     if (interaction.isChatInputCommand()) {
     
     if (interaction.commandName === "ping"){
-       // interaction.reply(`Ping is currently **${client.ws.ping}!**`);
-       interaction.reply(`Ping is currently ${client.ws.ping}`);
+       interaction.reply(`Ping is currently ${client.ws.ping}`); // PING COMMAND!
        return;
     }
     
-    else if (interaction.commandName === "chat"){
+    else if (interaction.commandName === "chat"){ // DIRECT MESSAGE CHAT FEATURE!
         let user_message = interaction.options.get("message").value;
 
         
@@ -115,7 +119,7 @@ client.on("interactionCreate", interaction => {
         
             let indexOfOutMessage = trained_inputs.indexOf(message);   
         
-            console.log("RECEIVED!!" + trained_inputs[indexOfOutMessage] + " & " + trained_outputs[indexOfOutMessage]);
+            console.log("RECEIVED!!" + trained_inputs[indexOfOutMessage] + " & " + trained_outputs[indexOfOutMessage]); // FOR DEBUGGING
 
              interaction.reply({content: trained_outputs[indexOfOutMessage], ephemeral: true});
              return;
@@ -124,12 +128,12 @@ client.on("interactionCreate", interaction => {
         
         else
             {
-               return interaction.reply({content: "I don't know that yet! Why don't you train me? :D \n\n **/train**", ephemeral: true});
+               return interaction.reply({content: "I don't know that yet! Why don't you train me? :D \n\n **/train**", ephemeral: true}); //IF THE BOT DOES NOT FIND THE MESSAGE IN THE ARRAY, IT WILL SEND THIS.
             }
     }
 
     else
-        if (interaction.commandName == "train"){
+        if (interaction.commandName == "train"){ // TRAINING SLASH COMMAND FUNCTION
             
             let train_input = interaction.options.get("input").value;
             let train_output = interaction.options.get("output").value;
@@ -139,23 +143,24 @@ client.on("interactionCreate", interaction => {
                 return;
             }
 
-            trained_inputs.push(train_input.toLowerCase());
-            trained_outputs.push(train_output);
+            trained_inputs.push(train_input.toLowerCase()); // CREATE A NEW INPUT
+            trained_outputs.push(train_output); // CREATE A NEW OUTPUT DATA
 
-            console.log(train_input.toLowerCase())
+            console.log(train_input.toLowerCase()) // MORE DEBUGGING 
             console.log(train_output)
 
-            console.log("ZONES!!");
-
-            for (let word in trained_inputs){
-                console.log("INPUT: " + trained_inputs[word] + " OUTPUT: " + trained_outputs[word]);
-            }
+            /*for (let word in trained_inputs){
+                console.log("INPUT: " + trained_inputs[word] + " OUTPUT: " + trained_outputs[word]); // EVEN MORE DEBUGGING! DISABLED BY DEFAULT. 
+            }*/
 
 
     
         }
        
-        interaction.reply({content: "success!", ephemeral: true});
+        interaction.reply({content: "success!", ephemeral: true}); // REPLY WITH AN EPHEMERAL SUCCESS MESSAGE IF USED CORRECTLY!
+        
+        
+        // BASIC INPUT AND OUTPUT DATA SAVING TO A .TXT FILE (YOU CAN CHANGE THIS TO JSON IF YOU'D LIKE!)
         
         fs.writeFile('./append-data.txt', "", callback); // Clear the file
 
