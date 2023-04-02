@@ -1,5 +1,8 @@
 # GLITCH!
-Glitch! is an open-source pre-trained &amp; evolving chatbot for you to talk to! :D
+Glitch! is an open-source pre-trained &amp; evolving Discord chatbot for you to talk to! :D
+
+![furry-glitch-rounded-transparent-bg](https://user-images.githubusercontent.com/92692001/229374126-2219148b-878e-4cee-8118-d0c190454ee6.png)
+
 
 # INVITE TO YOUR SERVER
 
