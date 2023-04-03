@@ -194,7 +194,6 @@ client.on("interactionCreate", interaction => {
             console.log(train_input.toLowerCase())
             console.log(train_output)
 
-            console.log("ZONES!!");
 
             for (let word in trained_inputs){
                 console.log("INPUT: " + trained_inputs[word] + " OUTPUT: " + trained_outputs[word]);
